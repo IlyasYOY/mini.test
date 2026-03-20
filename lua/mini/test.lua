@@ -1172,7 +1172,6 @@ MiniTest.new_child_neovim = function()
 
     -- Using 'jobstart' for creating a job is crucial for getting this to work
     -- in Github Actions. Other approaches:
-    -- - Using `{ pty = true }` seems crucial to make this work on GitHub CI.
     -- - Using `vim.loop.spawn()` is doable, but has some issues:
     --     - https://github.com/neovim/neovim/issues/21630
     --     - https://github.com/neovim/neovim/issues/21886
@@ -1189,7 +1188,6 @@ MiniTest.new_child_neovim = function()
     if not connected then
       local err = '  ' .. job.channel:gsub('\n', '\n  ')
       H.error('Failed to make connection to child Neovim with the following error:\n' .. err)
-      child.stop()
     end
 
     child.job = job
